@@ -1,6 +1,7 @@
 // src/app.js
 
 import { Auth, getUser } from './auth';
+import { getUserFragments } from './api';
 
 async function init() {
   // Get our UI elements
@@ -25,6 +26,7 @@ async function init() {
   if (!user) {
     // Disable the Logout button
     logoutBtn.disabled = true;
+
     return;
   }
 
@@ -36,6 +38,10 @@ async function init() {
 
   // Show the user's username
   userSection.querySelector('.username').innerText = user.username;
+
+
+  // Do an authenticated request to the fragments API server and log the result
+  getUserFragments(user);
 
   // Disable the Login button
   loginBtn.disabled = true;
