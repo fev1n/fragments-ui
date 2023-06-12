@@ -5,6 +5,7 @@
     <title>Fragments UI</title>
     <link rel="stylesheet" href="https://unpkg.com/bamboo.css" />
     <script type="module" src="./app.js"></script>
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <h1>Fragments UI</h1>
@@ -13,6 +14,31 @@
     </section>
     <section hidden id="user">
       <h2>Hello <span class="username"></span>!</h2>
+    </section>
+    <br />
+    <section id="post">
+      <h3>Get specific fragment by ID</h3>
+      <hr />
+      <input id="id" type="text" placeholder="Enter a Fragment ID you want to search" />
+      <br /><br />
+      <button type="submit" id="getFragmentByIdBtn">Search</button>
+      <h3>Post a fragment</h3>
+      <hr />
+      <p>Type a data you want to put for this fragment:</p>
+      <textarea
+        id="data"
+        cols="30"
+        rows="10"
+        placeholder="Enter the data you want to post for this fragment"
+      ></textarea>
+      <br /><br />
+      <button type="submit" id="postBtn" class="btnToRight">POST</button>
+      <br />
+      <h3>Get all fragments</h3>
+      <hr />
+      <button type="submit" id="getFragmentsIDsBtn">Get list of fragments IDs</button>
+      <button type="submit" id="getFragmentsDataBtn">Get list of fragments including data</button>
+      <br /><br />
     </section>
   </body>
 </html>

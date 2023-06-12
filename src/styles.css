@@ -1,0 +1,21 @@
+.btnToRight {
+  float: right;
+}
+
+#getFragmentsDataBtn {
+  margin-left: 35px;
+}
+
+#result {
+  text-align: center;
+  margin-top: 100px;
+}
+
+nav {
+  float: right;
+  margin-top: -55px;
+}
+
+#login {
+  margin-right: 12px;
+}

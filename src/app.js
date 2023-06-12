@@ -1,13 +1,18 @@
 // src/app.js
 
 import { Auth, getUser } from './auth';
-import { getUserFragments } from './api';
+import { getUserFragments, getFragmentsById, getUserFragmentsData, postUserFragments } from './api';
 
 async function init() {
   // Get our UI elements
   const userSection = document.querySelector('#user');
   const loginBtn = document.querySelector('#login');
   const logoutBtn = document.querySelector('#logout');
+  const postSection = document.querySelector('#post');
+  const postBtn = document.querySelector('#postBtn');
+  const getFragmentsIDsBtn = document.querySelector('#getFragmentsIDsBtn');
+  const getFragmentsDataBtn = document.querySelector('#getFragmentsDataBtn');
+  const getFragmentByIdBtn = document.querySelector('#getFragmentByIdBtn');
 
   // Wire up event handlers to deal with login and logout.
   loginBtn.onclick = () => {
@@ -30,6 +35,27 @@ async function init() {
     return;
   }
 
+  // Posts a fragment for a logged in user
+  postBtn.onclick = () => {
+    let data = document.querySelector('#data').value;
+    postUserFragments(user, data);
+  };
+
+  //Gets all fragments data for the logged in user
+  getFragmentsDataBtn.onclick = () => {
+    getUserFragmentsData(user);
+  };
+
+  //
+  getFragmentByIdBtn.onclick = () => {
+    let id = document.querySelector('#id').value;
+    getFragmentsById(user, id);
+  };
+
+  getFragmentsIDsBtn.onclick = () => {
+    getUserFragments(user);
+  };
+
   // Log the user info for debugging purposes
   console.log({ user });
 
@@ -39,12 +65,14 @@ async function init() {
   // Show the user's username
   userSection.querySelector('.username').innerText = user.username;
 
-
   // Do an authenticated request to the fragments API server and log the result
   getUserFragments(user);
 
   // Disable the Login button
   loginBtn.disabled = true;
+  if (loginBtn.disabled == true) {
+    postSection.hidden = false;
+  }
 }
 
 // Wait for the DOM to be ready, then start the app
