@@ -1,0 +1,10 @@
+.vscode/
+.parcel-cache/
+.eslintrc.js
+.env
+.prettier*
+.gitignore
+node_modules/
+dist/
+*.md
+.git/

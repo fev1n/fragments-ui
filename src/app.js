@@ -1,7 +1,13 @@
 // src/app.js
 
 import { Auth, getUser } from './auth';
-import { getUserFragments, getFragmentsById, getUserFragmentsData, postUserFragments } from './api';
+import {
+  getUserFragments,
+  getFragmentsInfo,
+  getUserFragmentsData,
+  postUserFragments,
+  getFragmentDataById,
+} from './api';
 
 async function init() {
   // Get our UI elements
@@ -12,7 +18,8 @@ async function init() {
   const postBtn = document.querySelector('#postBtn');
   const getFragmentsIDsBtn = document.querySelector('#getFragmentsIDsBtn');
   const getFragmentsDataBtn = document.querySelector('#getFragmentsDataBtn');
-  const getFragmentByIdBtn = document.querySelector('#getFragmentByIdBtn');
+  const getFragmentInfoByIdBtn = document.querySelector('#getFragmentInfoByIdBtn');
+  const getFragmentDataByIdBtn = document.querySelector('#getFragmentDataByIdBtn');
 
   // Wire up event handlers to deal with login and logout.
   loginBtn.onclick = () => {
@@ -38,7 +45,8 @@ async function init() {
   // Posts a fragment for a logged in user
   postBtn.onclick = () => {
     let data = document.querySelector('#data').value;
-    postUserFragments(user, data);
+    let type = document.querySelector('#types').value;
+    postUserFragments(user, data, type);
   };
 
   //Gets all fragments data for the logged in user
@@ -46,10 +54,15 @@ async function init() {
     getUserFragmentsData(user);
   };
 
-  //
-  getFragmentByIdBtn.onclick = () => {
+  //Get all info of fragment with given ID
+  getFragmentInfoByIdBtn.onclick = () => {
     let id = document.querySelector('#id').value;
-    getFragmentsById(user, id);
+    getFragmentsInfo(user, id);
+  };
+
+  getFragmentDataByIdBtn.onclick = () => {
+    let id = document.querySelector('#id').value;
+    getFragmentDataById(user, id);
   };
 
   getFragmentsIDsBtn.onclick = () => {

@@ -26,6 +26,7 @@
     "querystring-es3": "^0.2.1"
   },
   "dependencies": {
-    "aws-amplify": "^5.2.1"
+    "aws-amplify": "^5.2.1",
+    "parcel-bundler": "^1.12.5"
   }
 }

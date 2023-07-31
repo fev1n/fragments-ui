@@ -13,18 +13,30 @@
       <nav><button id="login">Login</button> <button id="logout">Logout</button></nav>
     </section>
     <section hidden id="user">
+    <section>
       <h2>Hello <span class="username"></span>!</h2>
     </section>
     <br />
     <section hidden id="post">
-      <h3>Get specific fragment by ID</h3>
+    <section>
+      <h3 id="heading-get">Get specific fragment by ID</h3>
       <hr />
       <input id="id" type="text" placeholder="Enter a Fragment ID you want to search" />
       <br /><br />
-      <button type="submit" id="getFragmentByIdBtn">Search</button>
+      <button type="submit" id="getFragmentInfoByIdBtn">Get Info</button>
+      <button type="submit" id="getFragmentDataByIdBtn">Get Data</button>
       <h3>Post a fragment</h3>
       <hr />
       <p>Type a data you want to put for this fragment:</p>
+      <label>Choose fragment type you want to submit:</label>
+      <select name="types" id="types" required>
+        <option value="text/plain">text/plain</option>
+        <option value="text/plain; charset=utf-8">text/plain; charset=utf-8</option>
+        <option value="text/html">text/html</option>
+        <option value="text/markdown">text/markdown</option>
+        <option value="application/json">application/json</option>
+      </select>
+      <hr />
       <textarea
         id="data"
         cols="30"
@@ -34,11 +46,14 @@
       <br /><br />
       <button type="submit" id="postBtn" class="btnToRight">POST</button>
       <br />
-      <h3>Get all fragments</h3>
+      <h3 id="heading-getAll">Get all fragments</h3>
       <hr />
       <button type="submit" id="getFragmentsIDsBtn">Get list of fragments IDs</button>
       <button type="submit" id="getFragmentsDataBtn">Get list of fragments including data</button>
       <br /><br />
+      <hr />
+      <h3 id="result">Received Fragment Data (below):</h3>
+      <div id="receivedData"></div>
     </section>
   </body>
 </html>
