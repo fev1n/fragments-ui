@@ -7,7 +7,7 @@ LABEL description="Fragments UI manual test platform"
 ENV NODE_ENV=production
 
 # We default to use port 8080 in our service
-ENV PORT=1234
+ENV PORT=8080
 
 # Reduce npm spam when installing within Docker
 # https://docs.npmjs.com/cli/v8/using-npm/config#loglevel
