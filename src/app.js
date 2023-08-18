@@ -7,6 +7,8 @@ import {
   getUserFragmentsData,
   postUserFragments,
   getFragmentDataById,
+  deleteFragmentDataById,
+  updateFragmentDataById,
 } from './api';
 
 async function init() {
@@ -20,6 +22,10 @@ async function init() {
   const getFragmentsDataBtn = document.querySelector('#getFragmentsDataBtn');
   const getFragmentInfoByIdBtn = document.querySelector('#getFragmentInfoByIdBtn');
   const getFragmentDataByIdBtn = document.querySelector('#getFragmentDataByIdBtn');
+  const deleteBtn = document.querySelector('#deleteBtn');
+  const uploadBtn = document.querySelector('#uploadBtn');
+  const updateBtn = document.querySelector('#updateBtn');
+  const updateImgBtn = document.querySelector('#updateImgBtn');
 
   // Wire up event handlers to deal with login and logout.
   loginBtn.onclick = () => {
@@ -67,6 +73,35 @@ async function init() {
 
   getFragmentsIDsBtn.onclick = () => {
     getUserFragments(user);
+  };
+
+  deleteBtn.onclick = () => {
+    let id = document.querySelector('#id').value;
+    deleteFragmentDataById(user, id);
+  };
+
+  updateBtn.onclick = () => {
+    let data = document.querySelector('#data').value;
+    let type = document.querySelector('#types').value;
+    let id = document.querySelector('#id').value;
+    updateFragmentDataById(user, data, type, id);
+  };
+
+  updateImgBtn.onclick = () => {
+    let data = document.getElementById('file').files[0];
+    let id = document.querySelector('#id').value;
+    updateFragmentDataById(user, data, data.type, id);
+  };
+
+  uploadBtn.onclick = () => {
+    let data = document.getElementById('file').files[0];
+
+    if (data != null) {
+      alert('File uploaded successfully!');
+    } else {
+      alert('Please select file properly');
+    }
+    postUserFragments(user, data, data.type);
   };
 
   // Log the user info for debugging purposes

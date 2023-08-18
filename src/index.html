@@ -25,6 +25,7 @@
       <br /><br />
       <button type="submit" id="getFragmentInfoByIdBtn">Get Info</button>
       <button type="submit" id="getFragmentDataByIdBtn">Get Data</button>
+      <button type="submit" id="deleteBtn">Delete</button>
       <h3>Post a fragment</h3>
       <hr />
       <p>Type a data you want to put for this fragment:</p>
@@ -43,9 +44,16 @@
         rows="10"
         placeholder="Enter the data you want to post for this fragment"
       ></textarea>
-      <br /><br />
+      <br /><br>
+      <button type="submit" id="updateBtn" class="btnToRight">UPDATE</button>
       <button type="submit" id="postBtn" class="btnToRight">POST</button>
       <br />
+      <strong>Create an Image fragment:</strong>
+      <input type="file" name="file" id="file" />
+      <br />
+      <br />
+      <button class="btnToRight" id="uploadBtn">Upload Image</button>
+      <button id="updateImgBtn">Update Image</button>      
       <h3 id="heading-getAll">Get all fragments</h3>
       <hr />
       <button type="submit" id="getFragmentsIDsBtn">Get list of fragments IDs</button>
@@ -54,6 +62,7 @@
       <hr />
       <h3 id="result">Received Fragment Data (below):</h3>
       <div id="receivedData"></div>
+      <img id="image">
     </section>
   </body>
 </html>

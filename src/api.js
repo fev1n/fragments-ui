@@ -45,6 +45,12 @@ export async function getFragmentDataById(user, id) {
         const data = await res.text();
         console.log('Got user fragments data for given id', { data });
         document.getElementById('receivedData').innerHTML = data;
+      } else if (header.startsWith('image')) {
+        const data = await res.blob();
+        console.log('Got user fragments data for given id', { data });
+        var image = document.querySelector('img');
+        var objectURL = URL.createObjectURL(data);
+        image.src = objectURL;
       }
       if (header.includes('json')) {
         const data = await res.json();
@@ -112,5 +118,60 @@ export async function getUserFragmentsData(user) {
     console.log('Got user fragments all the data', { data });
   } catch (err) {
     console.log('Unable to call GET /v1/fragments/?expand=1', { err });
+  }
+}
+
+export async function deleteFragmentDataById(user, id) {
+  try {
+    if (id != '') {
+      console.log('Deleting fragment data with ID' + id);
+      const res = await fetch(`${apiUrl}/v1/fragments/${id}`, {
+        method: 'delete',
+        headers: {
+          Authorization: `Bearer ${user.idToken}`,
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error(`${res.status} ${res.statusText}`);
+      }
+
+      console.log('Deleted fragment with ID:' + id);
+    } else {
+      document.getElementById('receivedData').textContent = 'ID cannot be empty';
+      console.log('id required');
+    }
+  } catch (err) {
+    console.error(`Unable to call DELETE /v1/fragments/${id}`, { err });
+  }
+}
+
+export async function updateFragmentDataById(user, data, type, id) {
+  try {
+    if (id != '') {
+      console.log('Updating fragment data with ID' + id);
+      if (type == 'application/json') {
+        data = JSON.parse(JSON.stringify(data));
+      }
+      const res = await fetch(`${apiUrl}/v1/fragments/${id}`, {
+        method: 'put',
+        headers: {
+          Authorization: `Bearer ${user.idToken}`,
+          'Content-type': type,
+        },
+        body: data,
+      });
+
+      if (!res.ok) {
+        throw new Error(`${res.status} ${res.statusText}`);
+      }
+
+      console.log('Updated fragment with ID:' + id);
+    } else {
+      document.getElementById('receivedData').textContent = 'ID cannot be empty';
+      console.log('id required');
+    }
+  } catch (err) {
+    console.error(`Unable to call PUT /v1/fragments/${id}`, { err });
   }
 }
